@@ -1,7 +1,7 @@
 This repository contains notes and personal configuration to set up system audio sharing pulseaudio configuration
 
 # Credits
-[https://github.com/toadjaune](https://github.com/toadjaune)
+[github:toadjaune](https://github.com/toadjaune)
 
 # Compatibility
 
