@@ -59,11 +59,11 @@ Using the original author's schema.
 
 ## My setup from `pavucontrol`
 ### Player
-- Input:
-- Output:
-#### Video Conferencing
-- Input:
-- Output:
-#### System
-- Input:
-- Output:
+- Input: None
+- Output: virtualspeaker
+### Video Conferencing
+- Input: virtualmic.monitor
+- Output: source speaker
+### System
+- Input: source mic
+- Output: source speaker
