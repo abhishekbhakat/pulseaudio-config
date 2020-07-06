@@ -1,27 +1,16 @@
-This repository contains notes and configuration to set up specific pulseaudio configuration
+This repository contains notes and personal configuration to set up system audio sharing pulseaudio configuration
 
-# Goal
-
-The objectif is to stream an audio medium to a videoconference, along with the microphone, and while hearing both the audio medium and the videoconference.
-There are schemas later in this README to explain this goal more clearly.
-
-Also see [this stackoverflow issue](https://askubuntu.com/questions/257992/how-can-i-use-pulseaudio-virtual-audio-streams-to-play-music-over-skype), which is the main base for this repository.
+# Credits
+[https://github.com/toadjaune](https://github.com/toadjaune)
 
 # Compatibility
 
-This was tested on Fedora 25, but should work as well on any distribution using pulseaudio.
+This was tested on Ubuntu 18.04.
 
 # Installation
 
-It is supposed that you already have a working installation of pulseaudio, launched automatically by your non-root user (default case of Gnome, it seems).
-
-- Clone this repository : `git clone https://github.com/toadjaune/pulseaudio-config`
-- Edit the `pulse_setup.sh` script and define MICROPHONE and SPEAKERS to the values of your own.
 - Run the script : `./pulse_setup.sh`
-  - If the script worked correctly, it should output a series of five numbers (the ids of the newly created virtual devices).
-  - If it didn't, you'll have the error messages from the underlying pactl commands.
 - Configure manually your media source and videoconference input with `pavucontrol`
-- Enjoy !
 
 # Heads-up
 
@@ -29,7 +18,6 @@ Here are some good-to-know things, I wish I knew some before starting working on
 - NEVER use headphones when tinkering with sound. It can be really dangerous, in case of driver malfunctioning, or sudden high volume.
 - None of this is reboot-proof. You will have to re-execute the script after every reboot.
 - `pulseaudio -k` restarts your pulseaudio daemon, reloading its configuration. Be careful however, it seems that sometimes it is not enough and makes weird stuff; if you have any doubt, reboot. (Actually, `pulseaudio -k` kills your pulseaudio daemon, but your system should restart it automatically. If not, you can do it with `pulseaudio --start-server`)
-- Make schemas of what you want to do. Seriously.
 - By default, pavucontrol may not display everything in its listings, pay attention to the filters at the bottom of the window.
 - It's probably possible to make these modifications reboot-proof by specifying the configuration in pulseaudio configuration files.
 
@@ -67,54 +55,14 @@ The italicized words are vocabulary that I'm either not sure of, or made up for 
   - Combined with _monitors_ and null sinks, it should allow you to do basically anything you want.
 
 # Schemas
-As told above, whenever you're trying to do anything implying virtual devices, _make a schema_ !
-I seriously doubt that I would have reached my objective without drawing what I wanted. (And I'm not mentioning my mental sanity)
 
-## My convention
-For such a situation, I'm convinced that it is essential to pick a convention that prevents you from drawing anything impossible.
-Here is mine, and the explanations to understand the associated logic :
-![](images/symbols.jpg?raw=true)
-- We can notice that streams can be separated in two categories, depending on where they come from and go :
-  - Come from a _player_, and go to an _output_ (referred to as _active_ stream)
-  - Come from an _input_, and go to a _recorder_ (referred to as _passive_ stream)
-- Each block receives stream(s) on the left, and sends stream(s) on the right
-- Since every sink always has an attached monitor, they are represented together in a single symbol
-- If the expected stream(s) on a side are _active_, the line of this side is doubled
-- Number of streams :
-  - A tringular extremity does not allow any stream
-  - A trapeze-shaped extremity (cut corners) allows exactly one stream
-  - A flat extremity allows any number of streams (including 0)
-- Virtual devices are hatched
-
-## How to build your setup
-Here are the steps I would recommend to follow to build your setup :
-- Choose your schema convention (if you don't like mine, you can use colors, other shapes, etc ...)
-- Add all the non-virtual devices that are relevant to your problem (everything that sends or receives streams from pulseaudio)
-- Make a simple schema to represent what you want to do, without considering constraints of types and number of streams.
-- Redo it, but respecting these constraints (it's like playing lego, you have to make the same schema as above, but with only certain bricks !)
-- Try to setup it manually
-  - Create the virtual devices you need (see the script in this repo to see syntax), but without specifying sources, sinks, etc
-  - Route everything according to your schema in pavucontrol
-- Once it works, automate it by specifying everything at device creation time in a script
-
-## My setup
-
-First, a simple schema to explain myself what I want to do :
-![](images/simple_schema.jpg?raw=true)
-
-Then, a schema following the above convention :
-![](images/full_schema.jpg?raw=true)
-
-# Resources
-
-These are some of the resources that I found useful when tinkering :
-- https://askubuntu.com/questions/257992/how-can-i-use-pulseaudio-virtual-audio-streams-to-play-music-over-skype
-- https://wiki.debian.org/audio-loopback
-- https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/
-- https://wiki.archlinux.org/index.php/PulseAudio
-- https://wiki.ubuntu.com/PulseAudio/Log
-
-
-# Contributions
-
-Pull requests are welcome, don't hesitate !
+## My setup from `pavucontrol`
+### Player
+Input:
+Output:
+#### Video Conferencing
+Input:
+Output:
+#### System
+Input:
+Output:
