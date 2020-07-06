@@ -55,14 +55,15 @@ The italicized words are vocabulary that I'm either not sure of, or made up for 
   - Combined with _monitors_ and null sinks, it should allow you to do basically anything you want.
 
 # Schemas
+Using the original author's schema.
 
 ## My setup from `pavucontrol`
 ### Player
-Input:
-Output:
+- Input:
+- Output:
 #### Video Conferencing
-Input:
-Output:
+- Input:
+- Output:
 #### System
-Input:
-Output:
+- Input:
+- Output:
